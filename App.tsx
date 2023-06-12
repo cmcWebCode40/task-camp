@@ -1,20 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyledText, StyledView } from './components/StyledRN';
 
-export default function App() {
+const App = (): React.ReactElement => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <StyledView className='flex-1 items-center justify-center bg-slate-600 '>
+      <StyledText className='text-red-500 font-bold text-2xl'>
+        Open up App.tsx to start working on your app!
+      </StyledText>
+      <StyledText>Open up App.tsx to start working on your app!</StyledText>
+      <StatusBar style='auto' />
+    </StyledView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
