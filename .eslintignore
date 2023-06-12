@@ -1,0 +1,19 @@
+node_modules/
+.expo/
+dist/
+assets
+app.json
+bable.config.js
+npm-debug.*
+
+ios/
+android/
+
+web-build/
+
+__test__
+
+# macOS
+.DS_Store
+
+jest-setup.js
