@@ -12,7 +12,7 @@ module.exports = function (api) {
             libs: "./libs",
             assets: "./assets",
             screens: "./screens",
-            navigations: "./navigator",
+            navigations: "./navigations",
           },
           extensions: [".js", ".jsx", ".ts", ".tsx"],
         },

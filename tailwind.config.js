@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+
+// const colors = require("./libs/constants/theme")
 module.exports = {
   content: [
     './App.{js,jsx,ts,tsx}',
@@ -7,7 +9,11 @@ module.exports = {
     './navigations/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        black:'#000'
+      }
+    },
   },
   plugins: [],
 };
