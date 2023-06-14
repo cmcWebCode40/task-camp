@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { MainNavigation } from './navigations';
 import React from 'react';
+
 import { StyledView } from './components/StyledRN';
+import { MainNavigation } from './navigations';
 
 const App = (): React.ReactElement => {
   return (

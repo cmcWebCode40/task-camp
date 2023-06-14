@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "todo-application",
-    "slug": "todo-application",
+    "slug": "task-camp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.cmcwebcode.taskcamp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "58542f3e-4f15-45d8-b63f-859f66dd409a"
+      }
+    },
+    "owner": "cmcwebcode"
   }
 }

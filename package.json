@@ -24,9 +24,20 @@
     "lint": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
     "web": "expo start --web",
     "test": "jest",
-    "clean:node_modules": "rm -rf node_modules/"
+    "clean:node_modules": "rm -rf node_modules/",
+    "eas:list": "eas secret:list",
+    "submit:staging:ios": "eas submit -p ios --latest --profile preview",
+    "submit:ios": "eas submit -p ios --latest",
+    "submit:staging:android": "eas submit -p android --latest --profile preview",
+    "submit:android": "eas submit -p android --latest",
+    "build:ios": "eas build  --platform ios",
+    "build:android": "eas build --platform android",
+    "build:staging:android": "eas build --profile preview --platform android",
+    "build:staging:ios": "eas build --profile preview --platform ios",
+    "create:eas-secret": "eas secret:push --scope project --env-file .env --force"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^7.1.0",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
@@ -35,6 +46,7 @@
     "nativewind": "^2.0.11",
     "react": "18.2.0",
     "react-native": "0.71.8",
+    "react-native-dropdown-picker": "^5.4.6",
     "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "^3.20.0",
     "react-native-svg": "13.4.0"
