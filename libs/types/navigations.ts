@@ -6,6 +6,6 @@ export type HomeTabNaviagtionScreens = {
 
 export type MainNaviagtionScreens = {
   Main: undefined;
-  TaskDetails:undefined
-  AddTask:undefined
+  TaskDetails: undefined;
+  AddTask: undefined;
 };
