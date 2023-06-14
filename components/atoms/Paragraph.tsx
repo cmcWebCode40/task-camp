@@ -1,6 +1,7 @@
-import { StyledText } from 'components/StyledRN';
 import React from 'react';
 import { TextProps } from 'react-native';
+
+import { StyledText } from 'components/StyledRN';
 
 type Size = 'sm' | 'md' | 'lg';
 
@@ -16,7 +17,6 @@ const variantStyles = {
 };
 
 const Paragraph: React.FunctionComponent<ParagraphProps> = ({
-  style,
   variant = 'md',
   className,
   ...rest

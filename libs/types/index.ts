@@ -1,1 +1,1 @@
-export * from './navigations'
+export * from './navigations';

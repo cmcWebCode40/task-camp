@@ -1,19 +1,20 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
-  HOME_SCREEN,
   FAVOURITE_TASK_SCREEN,
+  HOME_SCREEN,
   SETTINGS_SCREEN,
   TASK_HISTORY_SCREEN,
 } from 'libs/constants';
+import { colors } from 'libs/constants/colors';
 import React from 'react';
-
-import { Icon } from 'components/atoms';
 import {
-  HomeScreen,
   FavoriteTaskScreen,
+  HomeScreen,
   SettingScreen,
   TaskHistoryScreen,
 } from 'screens';
+
+import { Icon } from 'components/atoms';
 
 type TabIconArgs = {
   focused: boolean;
@@ -47,7 +48,7 @@ const tabs = [
     name: TASK_HISTORY_SCREEN,
     component: TaskHistoryScreen,
     icon: ({ focused }: TabIconArgs) => (
-      <Icon name={focused ? 'history' : 'history-outline'} />
+      <Icon name={!focused ? 'history' : 'history-outline'} />
     ),
   },
 ];
@@ -65,7 +66,11 @@ const TabNavigation: React.FunctionComponent = () => {
           name={item.name}
           options={{
             tabBarIcon: item.icon,
-            tabBarActiveTintColor: '#000',
+            tabBarActiveTintColor: colors.black,
+            tabBarLabelStyle: {
+              fontWeight: '500',
+              fontSize: 14,
+            },
           }}
           component={item.component}
         />

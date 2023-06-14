@@ -1,4 +1,4 @@
-declare module "*.css";
+declare module '*.css';
 declare module '*.svg' {
   import React from 'react';
   import { SvgProps } from 'react-native-svg';

@@ -1,21 +1,17 @@
-import {
-  StyledSafeAreaView,
-  StyledScrollView,
-  StyledView,
-} from 'components/StyledRN';
 import React from 'react';
-import { ScrollViewProps, ViewStyle } from 'react-native';
+import { ScrollViewProps } from 'react-native';
+
+import { StyledSafeAreaView, StyledScrollView } from 'components/StyledRN';
 
 type MainLayoutProps = {
   children: React.ReactNode;
   withScrollView?: boolean;
   scrollViewClassName?: string;
-  containerClassname?: ViewStyle;
+  containerClassname?: string;
 } & ScrollViewProps;
 
 const MainLayout: React.FunctionComponent<MainLayoutProps> = ({
   children,
-  style: scrollViewStyle,
   scrollViewClassName,
   containerClassname,
   withScrollView = true,
@@ -24,12 +20,12 @@ const MainLayout: React.FunctionComponent<MainLayoutProps> = ({
   if (withScrollView) {
     return (
       <StyledSafeAreaView
-        className={`bg-white flex-1 pt-3 px-3 ${containerClassname}`}
+        className={`bg-white flex-1 ${containerClassname}`}
         {...otherProps}
       >
         <StyledScrollView
           showsVerticalScrollIndicator={false}
-          className={`pt-3 px-3 ${scrollViewClassName}`}
+          className={`pt-3 flex-1 px-4 ${scrollViewClassName}`}
         >
           {children}
         </StyledScrollView>
@@ -38,8 +34,8 @@ const MainLayout: React.FunctionComponent<MainLayoutProps> = ({
   }
 
   return (
-    <StyledSafeAreaView className='bg-white flex-1 pt-3 px-3'>
-      <StyledView>{children}</StyledView>
+    <StyledSafeAreaView className='bg-white flex-1 pt-3 px-4'>
+      {children}
     </StyledSafeAreaView>
   );
 };
