@@ -24,6 +24,8 @@ export type IconName =
   | 'search1'
   | 'add-task'
   | 'date-range'
+  | 'arrow-upward'
+  | 'arrow-downward'
   | 'edit'
   | 'history';
 
@@ -58,6 +60,8 @@ const Icon: React.FunctionComponent<IconProps> = ({
       <FontAwesome name='history' size={size} {...otherProps} />
     ),
     'add-task': <MaterialIcons name='add-task' size={size} {...otherProps} />,
+    'arrow-upward': <MaterialIcons name='arrow-upward' size={size} {...otherProps} />,
+    'arrow-downward': <MaterialIcons name='arrow-downward' size={size} {...otherProps} />,
     'date-range': (
       <MaterialIcons name='date-range' size={size} {...otherProps} />
     ),

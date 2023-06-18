@@ -38,13 +38,16 @@ const Button: React.FunctionComponent<ButtonProps> = ({
   className,
   children,
   icon,
+  disabled,
   ...rest
 }) => {
+  const disabledClassname = disabled ? 'bg-slate-400' : '';
+
   return (
     <StyledPressable
-      className={`flex-row items-center justify-center bg-white shadow-md rounded space-x-2 hover:bg-slate-300
+      className={`flex-row items-center  justify-center bg-white shadow-md rounded space-x-2 hover:bg-slate-300
       active:bg-slate-500
- ${variantSizes[size]} ${variantStyles[variant]} ${className}`}
+ ${variantSizes[size]} ${variantStyles[variant]} ${className} ${disabledClassname}`}
       {...rest}
     >
       {icon && <StyledView>{icon}</StyledView>}
