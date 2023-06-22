@@ -10,11 +10,15 @@ interface DropDownMenuProps extends TextInputProps {
     value: string;
   }>;
   placeholder?: string;
+  selectedItem: string;
+  onSelect: (value: any) => void;
 }
 
 const DropDownMenu: React.FunctionComponent<DropDownMenuProps> = ({
   className,
   items,
+  onSelect,
+  selectedItem,
   placeholder,
   ...rest
 }) => {
@@ -26,11 +30,14 @@ const DropDownMenu: React.FunctionComponent<DropDownMenuProps> = ({
     <StyledView {...rest} className={className}>
       <StyledDropDownPicker
         open={open}
-        value={value}
+        value={value || selectedItem}
         items={data}
         placeholder={placeholder}
         setOpen={setOpen}
-        setValue={setValue}
+        setValue={(value) => {
+          onSelect(value(''));
+          setValue(value);
+        }}
         setItems={setData}
         className='rounded bg-white shadow-md z-30'
       />

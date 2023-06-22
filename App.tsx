@@ -1,15 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
+import { TaskContextProvider } from 'libs/context/TaskContext';
 import React from 'react';
+import Toast from 'react-native-toast-message';
 
-import { StyledView } from './components/StyledRN';
 import { MainNavigation } from './navigations';
 
 const App = (): React.ReactElement => {
   return (
-    <StyledView className='flex-1'>
+    <TaskContextProvider>
       <StatusBar style='auto' />
       <MainNavigation />
-    </StyledView>
+      <Toast />
+    </TaskContextProvider>
   );
 };
 

@@ -1,56 +1,80 @@
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { TASK_DETAIL_SCREEN } from 'libs/constants';
-import { MainNaviagtionScreens } from 'libs/types';
-import React, { useCallback } from 'react';
-import { PressableProps } from 'react-native';
+import { Task } from 'libs/types';
+import React from 'react';
+import { Pressable, PressableProps } from 'react-native';
 
 import { Chip, Heading, Icon } from 'components/atoms';
-import { StyledPressable, StyledView } from 'components/StyledRN';
+import { StyledView } from 'components/StyledRN';
 
 interface TaskCardItemProps
   extends PressableProps,
     Pick<React.ComponentPropsWithRef<typeof Chip>, 'size' | 'variant'> {
   title: string;
-  time: string;
+  className?: string;
+  dueDate: string;
+  taksId: string;
+  isFavorite?: boolean;
+  onNavigate?: (id: string) => void;
+  onAddFavorite: (data: Task, id: string) => Promise<void>;
 }
 
 const TaskCardItem: React.FunctionComponent<TaskCardItemProps> = ({
   size,
   variant,
-  time,
+  dueDate,
   title,
+  taksId,
+  onNavigate,
+  isFavorite,
+  onAddFavorite,
+  className = 'mb-2',
   ...rest
 }) => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<MainNaviagtionScreens>>();
-
-  const handleNewTaskNavigation = useCallback(() => {
-    navigation.navigate(TASK_DETAIL_SCREEN);
-  }, [navigation]);
+  const handleFavorite = () => {
+    const data: Task = {
+      id: taksId,
+      dueDate,
+      title,
+      priority: variant as any,
+      isFavorite: !isFavorite,
+    };
+    onAddFavorite(data, taksId);
+  };
 
   return (
-    <StyledPressable
+    <Pressable
       {...rest}
-      onPress={handleNewTaskNavigation}
-      className='border border-black rounded p-2 bg-white shadow-md active:bg-slate-50'
+      onPress={() => {
+        if (onNavigate) {
+          onNavigate(taksId);
+        }
+      }}
+      style={({ pressed }) => (pressed ? { opacity: 0.6 } : {})}
     >
-      <StyledView className='flex-row justify-between items-center mb-2'>
-        <Heading className='font-semibold text-xl' numberOfLines={1}>
-          {title}
-        </Heading>
-        <Icon name='staro' />
-      </StyledView>
-      <StyledView className='flex-row justify-between items-center mt-4'>
-        <Chip variant={variant} size={size} />
-        <StyledView className='flex-row justify-between items-center space-x-1'>
-          <Icon name='date-range' />
-          <Heading variant='sm' className='font-light'>
-            {time}
-          </Heading>
+      {({ pressed }) => (
+        <StyledView
+          className={`${className} border border-black rounded p-2 bg-white shadow-md active:bg-slate-50`}
+          style={{ opacity: pressed ? 0.6 : 1 }}
+        >
+          <StyledView className='flex-row justify-between items-center mb-2'>
+            <Heading className='font-semibold text-xl' numberOfLines={1}>
+              {title}
+            </Heading>
+            <Pressable onPress={handleFavorite}>
+              <Icon name={isFavorite ? 'star' : 'staro'} />
+            </Pressable>
+          </StyledView>
+          <StyledView className='flex-row justify-between items-center mt-4'>
+            <Chip variant={variant} size={size} />
+            <StyledView className='flex-row justify-between items-center space-x-1'>
+              <Icon name='date-range' size={16} />
+              <Heading variant='sm' className='font-semibold text-sm'>
+                {dueDate}
+              </Heading>
+            </StyledView>
+          </StyledView>
         </StyledView>
-      </StyledView>
-    </StyledPressable>
+      )}
+    </Pressable>
   );
 };
 

@@ -19,13 +19,13 @@ const DeletedTaskCardItem: React.FunctionComponent<
       {...rest}
       className='border bg-white shadow-md border-black rounded p-2'
     >
-      <Heading className='font-bold text-2xl' numberOfLines={1}>
+      <Heading className='font-bold text-xl' numberOfLines={1}>
         {title}
       </Heading>
       <StyledView className='flex-row justify-between items-center mt-4'>
         <StyledView className='flex-row justify-between items-center space-x-1'>
-          <Icon name='date-range' />
-          <Heading variant='sm' className='font-semibold'>
+          <Icon name='date-range' size={16} />
+          <Heading variant='sm' className='font-semibold text-sm'>
             {time}
           </Heading>
         </StyledView>
