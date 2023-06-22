@@ -13,9 +13,10 @@ enum DateTimeEnum {
 }
 
 interface DateCardProps {
-  title?: string;
+  value: string;
+  onSelect: (date: string) => void
 }
-const DateCard: React.FunctionComponent<DateCardProps> = () => {
+const DateCard: React.FunctionComponent<DateCardProps> = ({ onSelect, value }) => {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState(DateTimeEnum.DATE);
   const [show, setShow] = useState(false);
@@ -31,9 +32,9 @@ const DateCard: React.FunctionComponent<DateCardProps> = () => {
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
     if (mode === DateTimeEnum.DATE) {
-      const dateString = new Date(currentDate).toISOString();
-      const truncatedDate = dateString.substring(0, dateString.indexOf('T'));
-      setSelectedDate(truncatedDate);
+      const dateString = new Date(currentDate).toLocaleDateString();
+      setSelectedDate(dateString);
+      onSelect(dateString);
     }
   };
 
@@ -56,9 +57,9 @@ const DateCard: React.FunctionComponent<DateCardProps> = () => {
         </Heading>
         <StyledView className='flex-row justify-between items-center mt-4'>
           <StyledView className='flex-row justify-between items-center space-x-1'>
-            <Icon name='ios-time-outline' />
-            <Heading variant='sm' className='font-semibold'>
-              {selectedDate || 'DD/MM/YYYY'}
+            <Icon size={16} name='ios-time-outline' />
+            <Heading variant='sm' className='font-semibold text-sm'>
+              {selectedDate ?? value ?? 'DD/MM/YYYY'}
             </Heading>
           </StyledView>
           <Button onPress={showDatepicker} variant='contained' size='sm'>
@@ -69,7 +70,7 @@ const DateCard: React.FunctionComponent<DateCardProps> = () => {
       {show && (
         <DateTimePicker
           value={date}
-          mode={mode as any}
+          mode={mode}
           is24Hour={true}
           display={'default'}
           minimumDate={new Date()}
