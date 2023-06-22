@@ -1,42 +1,48 @@
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ADD_TASK_SCREEN } from 'libs/constants';
-import { MainNaviagtionScreens } from 'libs/types';
-import { HeaderNavigation } from 'navigations';
-import React, { useCallback } from 'react';
+import useTask from 'libs/hooks/useTask';
+import { MainNavigationScreens } from 'libs/types';
+import React, { useCallback, useMemo } from 'react';
 
 import { Chip, Heading, Icon, Paragraph } from 'components/atoms';
 import { StyledScrollView, StyledView } from 'components/StyledRN';
 import { MainLayout } from 'components/templates';
 
-const taskDescription = `
-useTransition is a Hook, so it can only be called inside components or custom Hooks. If you need to start a transition somewhere else (for example, from a data library), call the standalone startTransition instead.
+import HeaderNavigation from '../navigations/HeaderNavigation';
 
-You can wrap an update into a transition only if you have access to the set function of that state. If you want to start a transition in response to some prop or a custom Hook value, try useDeferredValue instead.
+type TaskDetailRouteProp = RouteProp<MainNavigationScreens, 'TaskDetails'>;
 
-The function you pass to startTransition must be synchronous. React immediately executes this function, marking all state updates that happen while it executes as transitions. If you try to perform more state updates later (for example, in a timeout), they won’t be marked as transitions.
+interface TaskDetailProps {
+  route: TaskDetailRouteProp;
+}
 
-A state update marked as a transition will be interrupted by other state updates. For example, if you update a chart component inside a transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input update.
-
-Transition updates can’t be used to control text inputs.
-
-If there are multiple ongoing transitions, React currently batches them together. This is a limitation that will likely be removed in a future release.
-
-`;
-
-const TaskDetailScreen: React.FunctionComponent = () => {
+const TaskDetailScreen: React.FunctionComponent<TaskDetailProps> = ({
+  route,
+}) => {
+  const { id } = route.params;
+  const { tasks } = useTask();
   const navigation =
-    useNavigation<NativeStackNavigationProp<MainNaviagtionScreens>>();
+    useNavigation<NativeStackNavigationProp<MainNavigationScreens>>();
+
+  const task = useMemo(
+    () => tasks?.find((item) => item.id === id),
+    [id, tasks]
+  );
 
   const handleNewTaskNavigation = useCallback(() => {
-    navigation.navigate(ADD_TASK_SCREEN);
-  }, [navigation]);
+    navigation.navigate(ADD_TASK_SCREEN, {
+      type: 'edit',
+      id,
+    });
+  }, [navigation, id]);
+
   return (
     <MainLayout withScrollView={false}>
       <HeaderNavigation />
       <StyledView>
         <StyledView className='flex-row justify-between items-center'>
-          <Heading className='font-semibold'>Technical Interview</Heading>
+          <Heading className='font-semibold'>{task?.title}</Heading>
           <Icon
             onPress={handleNewTaskNavigation}
             accessibilityLabel='Edit Task'
@@ -44,19 +50,19 @@ const TaskDetailScreen: React.FunctionComponent = () => {
           />
         </StyledView>
         <StyledView className='flex-row justify-between items-center mt-4 pb-4 pt-1'>
-          <StyledView className='flex-row justify-between items-center space-x-2'>
-            <Icon name='date-range' />
-            <Heading variant='sm' className='font-semibold'>
-              12/05/2023
+          <StyledView className='flex-row justify-between items-center space-x-1'>
+            <Icon size={16} name='date-range' />
+            <Heading variant='sm' className='font-semibold text-sm'>
+              {task?.dueDate}
             </Heading>
           </StyledView>
           <StyledView className='flex-row justify-between items-center space-x-2'>
-            <Chip variant={'high'} />
+            <Chip variant={task?.priority} />
             <Chip variant={'completed'} />
           </StyledView>
         </StyledView>
         <StyledScrollView>
-          <Paragraph>{taskDescription}</Paragraph>
+          <Paragraph>{task?.description}</Paragraph>
         </StyledScrollView>
       </StyledView>
     </MainLayout>
