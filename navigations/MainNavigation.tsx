@@ -5,14 +5,14 @@ import {
   MAIN_STACK_SCREEN,
   TASK_DETAIL_SCREEN,
 } from 'libs/constants';
-import { MainNaviagtionScreens } from 'libs/types';
+import { MainNavigationScreens } from 'libs/types';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AddTaskScreen, TaskDetailScreen } from 'screens';
 
 import TabNavigation from './TabNavigation';
 
-const Stack = createNativeStackNavigator<MainNaviagtionScreens>();
+const Stack = createNativeStackNavigator<MainNavigationScreens>();
 
 const MainNavigation = () => {
   return (

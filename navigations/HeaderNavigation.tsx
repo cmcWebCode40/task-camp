@@ -7,7 +7,7 @@ import { StyledView } from 'components/StyledRN';
 const HeaderNavigation: React.FunctionComponent = () => {
   const navigation = useNavigation();
   return (
-    <StyledView className='flex-row items-center justify-between py-2'>
+    <StyledView className='flex-row items-center justify-between py-2 -ml-2'>
       <StyledView>
         {navigation.canGoBack() && (
           <Icon
