@@ -25,7 +25,7 @@ const MainLayout: React.FunctionComponent<MainLayoutProps> = ({
       >
         <StyledScrollView
           showsVerticalScrollIndicator={false}
-          className={`pt-3 flex-1 px-4 ${scrollViewClassName}`}
+          className={`py-3 flex-1 px-4 ${scrollViewClassName}`}
         >
           {children}
         </StyledScrollView>
@@ -34,7 +34,7 @@ const MainLayout: React.FunctionComponent<MainLayoutProps> = ({
   }
 
   return (
-    <StyledSafeAreaView className='bg-white flex-1 pt-3 px-4'>
+    <StyledSafeAreaView className='bg-white flex-1 py-3 px-4'>
       {children}
     </StyledSafeAreaView>
   );

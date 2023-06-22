@@ -14,9 +14,12 @@ enum DateTimeEnum {
 
 interface DateCardProps {
   value: string;
-  onSelect: (date: string) => void
+  onSelect: (date: string) => void;
 }
-const DateCard: React.FunctionComponent<DateCardProps> = ({ onSelect, value }) => {
+const DateCard: React.FunctionComponent<DateCardProps> = ({
+  onSelect,
+  value,
+}) => {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState(DateTimeEnum.DATE);
   const [show, setShow] = useState(false);

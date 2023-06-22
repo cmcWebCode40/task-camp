@@ -1,5 +1,6 @@
 import { styled } from 'nativewind';
 import {
+  ActivityIndicator,
   Pressable,
   ScrollView,
   Switch,
@@ -18,3 +19,4 @@ export const StyledScrollView = styled(ScrollView);
 export const StyledTextInput = styled(TextInput);
 export const StyledDropDownPicker = styled(DropDownPicker);
 export const StyledSwitch = styled(Switch);
+export const StyledActivityIndicator = styled(ActivityIndicator);

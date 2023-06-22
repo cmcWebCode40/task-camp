@@ -1,7 +1,8 @@
+import LottieView from 'lottie-react-native';
+import React, { useRef } from 'react';
+
 import { Heading } from 'components/atoms';
 import { StyledView } from 'components/StyledRN';
-import React, { useRef } from 'react';
-import LottieView from 'lottie-react-native';
 
 interface EmptyListCardProps {
   message?: string;

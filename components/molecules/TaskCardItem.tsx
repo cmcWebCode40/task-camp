@@ -1,12 +1,13 @@
 import { Task } from 'libs/types';
 import React from 'react';
 import { Pressable, PressableProps } from 'react-native';
+
 import { Chip, Heading, Icon } from 'components/atoms';
 import { StyledView } from 'components/StyledRN';
 
 interface TaskCardItemProps
   extends PressableProps,
-  Pick<React.ComponentPropsWithRef<typeof Chip>, 'size' | 'variant'> {
+    Pick<React.ComponentPropsWithRef<typeof Chip>, 'size' | 'variant'> {
   title: string;
   className?: string;
   dueDate: string;
@@ -38,7 +39,6 @@ const TaskCardItem: React.FunctionComponent<TaskCardItemProps> = ({
     };
     onAddFavorite(data, taksId);
   };
-  console.log(isFavorite);
 
   return (
     <Pressable

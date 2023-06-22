@@ -26,7 +26,6 @@ const DropDownMenu: React.FunctionComponent<DropDownMenuProps> = ({
   const [value, setValue] = useState(null);
   const [data, setData] = useState(items);
 
-
   return (
     <StyledView {...rest} className={className}>
       <StyledDropDownPicker

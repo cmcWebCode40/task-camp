@@ -6,7 +6,7 @@ import { StyledPressable, StyledView } from 'components/StyledRN';
 
 interface DeletedTaskCardItemProps
   extends PressableProps,
-  Pick<React.ComponentPropsWithRef<typeof Chip>, 'size' | 'variant'> {
+    Pick<React.ComponentPropsWithRef<typeof Chip>, 'size' | 'variant'> {
   title: string;
   time: string;
 }
