@@ -1,5 +1,5 @@
-import { CompositeNavigationProp } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type HomeTabNavigationScreens = {
   Home: undefined;
@@ -10,11 +10,11 @@ export type HomeTabNavigationScreens = {
 export type MainNavigationScreens = {
   Main: undefined;
   TaskDetails: {
-      id:string
-    };
+    id: string;
+  };
   AddTask: {
-    type:'new' | 'edit',
-    id?:string
+    type: 'new' | 'edit';
+    id?: string;
   };
 };
 

@@ -1,8 +1,8 @@
-import { TaskContext } from 'libs/context/TaskContext'
-import { useContext } from 'react'
+import { TaskContext } from 'libs/context/TaskContext';
+import { useContext } from 'react';
 
 const useTask = () => {
-  return useContext(TaskContext)
-}
+  return useContext(TaskContext);
+};
 
-export default useTask
+export default useTask;
