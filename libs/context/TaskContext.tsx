@@ -6,7 +6,7 @@ import {
   updateTaskItem,
 } from 'libs/services/taskManager';
 import { Task } from 'libs/types';
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useMemo, useState } from 'react';
 
 import { firebase } from '../services';
 
@@ -25,9 +25,9 @@ type TaskContextProvider = {
 
 export const TaskContext = createContext<DefaultContext>({
   tasks: undefined,
-  add: async () => {},
-  deleteItem: async () => {},
-  update: async () => {},
+  add: async () => { },
+  deleteItem: async () => { },
+  update: async () => { },
   error: undefined,
   isLoading: false,
 });
@@ -107,14 +107,19 @@ export const TaskContextProvider: React.FunctionComponent<
     }
   };
 
-  const values = {
-    add,
-    tasks,
-    error,
-    update,
-    isLoading,
-    deleteItem,
-  };
+  const taskValues = useMemo(
+    () => ({
+      add,
+      tasks,
+      error,
+      update,
+      isLoading,
+      deleteItem,
+    }),
+    [add, tasks, error, update, isLoading, deleteItem]
+  );
 
-  return <TaskContext.Provider value={values}>{children}</TaskContext.Provider>;
+  return (
+    <TaskContext.Provider value={taskValues}>{children}</TaskContext.Provider>
+  );
 };
