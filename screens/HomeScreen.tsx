@@ -79,7 +79,7 @@ const HomeScreen: React.FunctionComponent = () => {
                 }
               />
             )}
-            <StyledView className='space-y-4 h-full'>
+            <StyledView className='space-y-4 h-screen'>
               {(searchResult?.length || tasks?.length) && (
                 <FlashList
                   onScroll={handleScroll}
