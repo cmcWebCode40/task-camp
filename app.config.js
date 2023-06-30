@@ -43,6 +43,16 @@ export default {
         projectId: '58542f3e-4f15-45d8-b63f-859f66dd409a',
       },
     },
+    plugins: [
+      [
+        'expo-build-properties',
+        {
+          ios: {
+            flipper: true,
+          },
+        },
+      ],
+    ],
     owner: 'cmcwebcode',
   },
 };

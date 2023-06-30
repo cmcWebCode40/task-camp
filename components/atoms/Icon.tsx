@@ -27,6 +27,7 @@ export type IconName =
   | 'arrow-upward'
   | 'arrow-downward'
   | 'edit'
+  | 'delete'
   | 'history';
 
 type IconProps = {
@@ -47,6 +48,7 @@ const Icon: React.FunctionComponent<IconProps> = ({
     search1: <AntDesign name='search1' size={size} {...otherProps} />,
     star: <AntDesign name='star' size={size} {...otherProps} />,
     staro: <AntDesign name='staro' size={size} {...otherProps} />,
+    delete: <AntDesign name='delete' size={size} {...otherProps} />,
     'ios-home-outline': (
       <Ionicons name='ios-home-outline' size={size} {...otherProps} />
     ),
