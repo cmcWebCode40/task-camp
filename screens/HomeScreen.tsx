@@ -7,13 +7,18 @@ import useSearch from 'libs/hooks/useSearch';
 import useTask from 'libs/hooks/useTask';
 import { MainNavigationScreens, Task } from 'libs/types';
 import React, { useCallback, useState } from 'react';
-import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
+import { Dimensions, NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 
 import { Button, Heading, Icon } from 'components/atoms';
 import { EmptyListCard, TaskCardItem } from 'components/molecules';
 import { SearchBarPanel } from 'components/organisms';
-import { StyledActivityIndicator, StyledView } from 'components/StyledRN';
+import {
+  StyledActivityIndicator,
+  StyledView,
+} from 'components/StyledRN';
 import { MainLayout } from 'components/templates';
+
+const TASKLIST_HEIGHT = Dimensions.get('window').height / 1.5
 
 const HomeScreen: React.FunctionComponent = () => {
   const [isScrollingStart, setIsScrollingStart] = useState<boolean>(false);
@@ -79,12 +84,13 @@ const HomeScreen: React.FunctionComponent = () => {
                 }
               />
             )}
-            <StyledView className='space-y-4 h-screen'>
+            <StyledView style={{
+              height: TASKLIST_HEIGHT
+            }} className='h-screen'>
               {(searchResult?.length || tasks?.length) && (
                 <FlashList
                   onScroll={handleScroll}
                   data={searchResult || tasks}
-                  numColumns={1}
                   renderItem={({ item }) => (
                     <TaskCardItem
                       key={item.id}
@@ -97,7 +103,7 @@ const HomeScreen: React.FunctionComponent = () => {
                       onNavigate={handleTaskDetailsNavigation}
                     />
                   )}
-                  estimatedItemSize={100}
+                  estimatedItemSize={50}
                 />
               )}
             </StyledView>

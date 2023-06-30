@@ -7,8 +7,8 @@ import {
 } from 'libs/services/taskManager';
 import { Task } from 'libs/types';
 import React, { createContext, useEffect, useMemo, useState } from 'react';
-
 import { firebase } from '../services';
+
 
 type DefaultContext = {
   isLoading: boolean;

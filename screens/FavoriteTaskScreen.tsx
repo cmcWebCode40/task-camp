@@ -22,7 +22,7 @@ const FavoriteTaskScreen: React.FunctionComponent = () => {
   return (
     <MainLayout>
       <Heading className='font-bold mb-4'>My Favorites</Heading>
-      <StyledView className='space-y-4 h-full'>
+      <StyledView className='space-y-4 h-full mb-5'>
         {!favoriteTasks?.length && (
           <EmptyListCard message='No Task have been marked as favorite yet' />
         )}
